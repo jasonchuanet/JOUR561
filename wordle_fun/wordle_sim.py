@@ -39,22 +39,25 @@ def score(test_word, solution_list, answer_list):
                     #- If a letter is green, every word that does not have the same letter is that position, is pruned
                     if (evaluation[index] == GREEN):
                         if test_word[index] != solution[index]:
-                            raise Exception("Pruned")
+                            raise Exception("Pruned, Green")
                     #- If a letter is yellow,
                     if (evaluation[index] == YELLOW):
                         # every word that has that letter in the same position in pruned
                         if test_word[index] == solution[index]:
-                            raise Exception("Pruned")
+                            raise Exception("Pruned, Yellow Position")
                         # every word that does not contain that letter is pruned
                         if test_word[index] not in solution:
-                            raise Exception("Pruned")
+                            raise Exception("Pruned, Yellow not containing")
                     #- If a letter is grey, every word that has the letter, in any position, is pruned
                     if (evaluation[index] == GRAY):
                         if test_word[index] in solution:
-                            raise Exception("Pruned")
-            except:
+                            raise Exception("Pruned, Gray")
+                    print(test_word,solution, evaluation)
+            except BaseException as reason:
+                print(test_word,solution, evaluation, reason)
                 pruned_words += 1
         amount_remaining_words.append(pruned_words)
+            
     #return sum(amount_remaining_words)/len(amount_remaining_words)
     #return median(amount_remaining_words)
     return test_word, amount_remaining_words
