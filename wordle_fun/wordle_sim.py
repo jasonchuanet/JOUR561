@@ -61,6 +61,3 @@ def score(test_word, solution_list, answer_list):
     #return sum(amount_remaining_words)/len(amount_remaining_words)
     #return median(amount_remaining_words)
     return test_word, amount_remaining_words
-
-def multi_score(word):
-    return score(word, wordle_valid, wordle_answers)
